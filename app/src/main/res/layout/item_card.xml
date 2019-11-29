@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/item_card_text_entity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@+id/item_card_text_type"
+            app:layout_constraintStart_toStartOf="@+id/item_card_text_number_1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Santander" />
+
+        <TextView
+            android:id="@+id/item_card_text_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/item_card_text_entity"
+            app:layout_constraintEnd_toEndOf="@+id/item_card_text_number_4"
+            app:layout_constraintTop_toTopOf="@+id/item_card_text_entity"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="Credit card" />
+
+        <TextView
+            android:id="@+id/item_card_text_number_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/item_card_text_number_2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_card_text_entity"
+            tools:text="1335" />
+
+        <TextView
+            android:id="@+id/item_card_text_number_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_card_text_number_1"
+            app:layout_constraintEnd_toStartOf="@+id/item_card_text_number_3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/item_card_text_number_1"
+            app:layout_constraintTop_toTopOf="@+id/item_card_text_number_1"
+            tools:text="9583" />
+
+        <TextView
+            android:id="@+id/item_card_text_number_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_card_text_number_2"
+            app:layout_constraintEnd_toStartOf="@+id/item_card_text_number_4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/item_card_text_number_2"
+            app:layout_constraintTop_toTopOf="@+id/item_card_text_number_2"
+            tools:text="1654" />
+
+        <TextView
+            android:id="@+id/item_card_text_number_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_card_text_number_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/item_card_text_number_3"
+            app:layout_constraintTop_toTopOf="@+id/item_card_text_number_3"
+            tools:text="6548" />
+
+        <TextView
+            android:id="@+id/item_card_text_valid_until"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/item_card_text_cvv"
+            app:layout_constraintStart_toStartOf="@+id/item_card_text_number_1"
+            app:layout_constraintTop_toBottomOf="@+id/item_card_text_number_1"
+            tools:text="07/22" />
+
+        <TextView
+            android:id="@+id/item_card_text_cvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/item_card_text_number_4"
+            app:layout_constraintTop_toBottomOf="@+id/item_card_text_number_4"
+            tools:text="698" />
+
+        <TextView
+            android:id="@+id/item_card_text_holder_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/item_card_text_valid_until"
+            app:layout_constraintTop_toBottomOf="@+id/item_card_text_valid_until"
+            tools:text="Diego Lovera VIga" />
+
+        <TextView
+            android:id="@+id/item_card_text_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_card_text_holder_name"
+            app:layout_constraintEnd_toEndOf="@+id/item_card_text_cvv"
+            app:layout_constraintTop_toTopOf="@+id/item_card_text_holder_name"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="Mastercard" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
