@@ -1,14 +1,18 @@
 package com.diegolovera.cardindex
 
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
+import com.diegolovera.swipelayout.SwipeLayout
 
-class CardListAdapter(context: Context, private var mCharacterList: ArrayList<Card>?)
+class CardListAdapter(private val context: Context, private var mCharacterList: ArrayList<Card>?)
     : RecyclerView.Adapter<CardListAdapter.CardViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -20,6 +24,7 @@ class CardListAdapter(context: Context, private var mCharacterList: ArrayList<Ca
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val card = mCharacterList!![position]
+        holder.setIsRecyclable(false)
         holder.mTextEntity.text = card.cardEntity
         holder.mTextType.text = card.cardType
 
@@ -45,11 +50,14 @@ class CardListAdapter(context: Context, private var mCharacterList: ArrayList<Ca
 
     private fun removeAt(position: Int) {
         mCharacterList!!.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeChanged(position, mCharacterList!!.size)
+        notifyDataSetChanged()
+        //notifyItemRemoved(position)
+        //notifyItemRangeChanged(position, mCharacterList!!.size)
     }
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var mSwipeLayout: SwipeLayout = itemView.findViewById(R.id.item_card_swipelayout)
+
         var mTextEntity: TextView = itemView.findViewById(R.id.item_card_text_entity)
         var mTextType: TextView = itemView.findViewById(R.id.item_card_text_type)
 
@@ -81,7 +89,21 @@ class CardListAdapter(context: Context, private var mCharacterList: ArrayList<Ca
 
             }
             mButtonDelete.setOnClickListener {
-                removeAt(adapterPosition)
+                val builder = AlertDialog.Builder(context)
+                builder.setMessage("Are you sure you want to delete this card?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes") { _, _ ->
+                        removeAt(adapterPosition)
+                    }
+                    .setNegativeButton("No") { dialog, _ -> dialog.cancel() }
+                val alert = builder.create()
+                alert.setOnShowListener {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(context.getColor(R.color.colorAccent))
+                        alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(context.getColor(R.color.colorAccent))
+                    }
+                }
+                alert.show()
             }
         }
     }

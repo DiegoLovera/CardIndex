@@ -2,6 +2,7 @@
 <com.diegolovera.swipelayout.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_card_swipelayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
@@ -9,7 +10,7 @@
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="8dp">
 
-    <include layout="@layout/item_card_below"/>
+    <include layout="@layout/item_card_below" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
