@@ -1,7 +1,6 @@
 package com.diegolovera.cardindex
 
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +33,7 @@ class CardListAdapter(private val context: Context, private var mCharacterList: 
         holder.mTextNumber4.text = card.cardNumber.substring(12, 16)
 
         holder.mTextValidUntil.text = card.cardValidUntil
-        holder.mTextCvv.text = card.cardCvv
+        holder.mTextCvv.text = card.cardCode
         holder.mTextHolderName.text = card.cardHolderName
         holder.mTextBrand.text = card.cardBrand
     }
@@ -67,7 +66,7 @@ class CardListAdapter(private val context: Context, private var mCharacterList: 
         var mTextNumber4: TextView = itemView.findViewById(R.id.item_card_text_number_4)
 
         var mTextValidUntil: TextView = itemView.findViewById(R.id.item_card_text_valid_until)
-        var mTextCvv: TextView = itemView.findViewById(R.id.item_card_text_cvv)
+        var mTextCvv: TextView = itemView.findViewById(R.id.item_card_text_code)
         var mTextHolderName: TextView = itemView.findViewById(R.id.item_card_text_holder_name)
         var mTextBrand: TextView = itemView.findViewById(R.id.item_card_text_brand)
 
@@ -97,12 +96,6 @@ class CardListAdapter(private val context: Context, private var mCharacterList: 
                     }
                     .setNegativeButton("No") { dialog, _ -> dialog.cancel() }
                 val alert = builder.create()
-                alert.setOnShowListener {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(context.getColor(R.color.colorAccent))
-                        alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(context.getColor(R.color.colorAccent))
-                    }
-                }
                 alert.show()
             }
         }

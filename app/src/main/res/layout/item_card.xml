@@ -106,13 +106,13 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/item_card_text_cvv"
+                app:layout_constraintEnd_toStartOf="@+id/item_card_text_code"
                 app:layout_constraintStart_toStartOf="@+id/item_card_text_number_1"
                 app:layout_constraintTop_toBottomOf="@+id/item_card_text_number_1"
                 tools:text="07/22" />
 
             <TextView
-                android:id="@+id/item_card_text_cvv"
+                android:id="@+id/item_card_text_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/item_card_text_holder_name"
-                app:layout_constraintEnd_toEndOf="@+id/item_card_text_cvv"
+                app:layout_constraintEnd_toEndOf="@+id/item_card_text_code"
                 app:layout_constraintTop_toTopOf="@+id/item_card_text_holder_name"
                 app:layout_constraintVertical_bias="1.0"
                 tools:text="Mastercard" />

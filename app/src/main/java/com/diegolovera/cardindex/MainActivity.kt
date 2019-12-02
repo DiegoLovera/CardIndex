@@ -1,6 +1,7 @@
 package com.diegolovera.cardindex
 
 import android.os.Bundle
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,5 +32,13 @@ class MainActivity : AppCompatActivity() {
         mMainViewModel.getCards().observe(this@MainActivity, Observer {
             mAdapterCards.setData(it)
         })
+
+        mFabMain = findViewById(R.id.main_fab)
+        mFabMain.setOnClickListener {
+            val cardDialog = CardFormDialog(this@MainActivity)
+            cardDialog.show()
+            cardDialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            cardDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+        }
     }
 }

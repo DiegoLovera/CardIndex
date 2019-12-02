@@ -5,6 +5,6 @@ data class Card(
     val cardType: String,
     val cardNumber: String,
     val cardValidUntil: String,
-    val cardCvv: String,
+    val cardCode: String,
     val cardHolderName: String,
     val cardBrand: String)
