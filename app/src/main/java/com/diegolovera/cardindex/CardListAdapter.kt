@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 
-class CardListAdapter(context: Context, private var mCharacterList: List<Card>?)
+class CardListAdapter(context: Context, private var mCharacterList: ArrayList<Card>?)
     : RecyclerView.Adapter<CardListAdapter.CardViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -31,20 +32,21 @@ class CardListAdapter(context: Context, private var mCharacterList: List<Card>?)
         holder.mTextCvv.text = card.cardCvv
         holder.mTextHolderName.text = card.cardHolderName
         holder.mTextBrand.text = card.cardBrand
-        /*holder.mCardCharacter.setOnClickListener {
-            val intent = Intent(context, CharacterActivity::class.java)
-            intent.putExtra(CharacterActivity.CHARACTER_ID, character.id)
-            context.startActivity(intent)
-        }*/
     }
 
     override fun getItemCount(): Int {
         return mCharacterList!!.size
     }
 
-    fun setData(data: List<Card>) {
+    fun setData(data: ArrayList<Card>) {
         mCharacterList = data
         notifyDataSetChanged()
+    }
+
+    private fun removeAt(position: Int) {
+        mCharacterList!!.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, mCharacterList!!.size)
     }
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -60,5 +62,27 @@ class CardListAdapter(context: Context, private var mCharacterList: List<Card>?)
         var mTextCvv: TextView = itemView.findViewById(R.id.item_card_text_cvv)
         var mTextHolderName: TextView = itemView.findViewById(R.id.item_card_text_holder_name)
         var mTextBrand: TextView = itemView.findViewById(R.id.item_card_text_brand)
+
+        var mButtonLock: AppCompatImageButton = itemView.findViewById(R.id.item_card_lock_button)
+        var mButtonEdit: AppCompatImageButton = itemView.findViewById(R.id.item_card_edit_button)
+        var mButtonDelete: AppCompatImageButton = itemView.findViewById(R.id.item_card_delete_button)
+
+        init {
+            mButtonLock.setOnClickListener {
+                mTextNumber1.visibility = View.INVISIBLE
+                mTextNumber2.visibility = View.INVISIBLE
+                mTextNumber3.visibility = View.INVISIBLE
+                mTextNumber4.visibility = View.INVISIBLE
+
+                mTextCvv.visibility = View.INVISIBLE
+                mTextValidUntil.visibility = View.INVISIBLE
+            }
+            mButtonEdit.setOnClickListener {
+
+            }
+            mButtonDelete.setOnClickListener {
+                removeAt(adapterPosition)
+            }
+        }
     }
 }

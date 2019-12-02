@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel: ViewModel() {
-    fun getCards(): LiveData<List<Card>> {
-        val result = MutableLiveData<List<Card>>()
+    fun getCards(): LiveData<ArrayList<Card>> {
+        val result = MutableLiveData<ArrayList<Card>>()
         result.value = arrayListOf(
             Card("Santander",
                 "Credit card",
