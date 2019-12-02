@@ -35,10 +35,14 @@ class MainActivity : AppCompatActivity() {
 
         mFabMain = findViewById(R.id.main_fab)
         mFabMain.setOnClickListener {
-            val cardDialog = CardFormDialog(this@MainActivity)
+            val cardDialog = CardFormDialog(this@MainActivity, object : CardFormListener {
+                override fun onCardCreated(cardCrated: Card) {
+                    mMainViewModel.addCard(cardCrated)
+                }
+            })
             cardDialog.show()
-            cardDialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            cardDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+            cardDialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            cardDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         }
     }
 }
