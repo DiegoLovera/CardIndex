@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.diegolovera.cardindex.*
-import com.diegolovera.cardindex.data.Card
+import com.diegolovera.cardindex.data.models.Card
 import com.diegolovera.cardindex.ui.adapters.CardListAdapter
 import com.diegolovera.cardindex.ui.dialogs.CardFormDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,18 +25,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mMainViewModel = ViewModelProvider(this, MainViewModelFactory(this)).get(MainViewModel::class.java)
+
         mRecyclerCards = findViewById(R.id.content_main_recycler_cards)
         mAdapterCards =
             CardListAdapter(
                 this,
-                ArrayList()
+                ArrayList(),
+                mMainViewModel
             )
 
         mRecyclerCards.setHasFixedSize(true)
         mRecyclerCards.layoutManager = LinearLayoutManager(this)
         mRecyclerCards.adapter = mAdapterCards
 
-        mMainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mMainViewModel.getCards().observe(this@MainActivity, Observer {
             mAdapterCards.setData(it)
         })

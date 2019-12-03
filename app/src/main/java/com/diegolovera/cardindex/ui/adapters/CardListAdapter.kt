@@ -9,10 +9,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.diegolovera.cardindex.R
-import com.diegolovera.cardindex.data.Card
+import com.diegolovera.cardindex.data.models.Card
+import com.diegolovera.cardindex.ui.activites.MainViewModel
 import com.diegolovera.swipelayout.SwipeLayout
 
-class CardListAdapter(private val context: Context, private var mCharacterList: ArrayList<Card>?)
+class CardListAdapter(private val context: Context,
+                      private var mCharacterList: List<Card>?,
+                      private val mMainViewModel: MainViewModel)
     : RecyclerView.Adapter<CardListAdapter.CardViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -43,13 +46,13 @@ class CardListAdapter(private val context: Context, private var mCharacterList: 
         return mCharacterList!!.size
     }
 
-    fun setData(data: ArrayList<Card>) {
+    fun setData(data: List<Card>) {
         mCharacterList = data
         notifyDataSetChanged()
     }
 
     private fun removeAt(position: Int) {
-        mCharacterList!!.removeAt(position)
+        mMainViewModel.removeCard(mCharacterList!![position])
         notifyDataSetChanged()
         //notifyItemRemoved(position)
         //notifyItemRangeChanged(position, mCharacterList!!.size)

@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Window
 import com.diegolovera.cardindex.R
-import com.diegolovera.cardindex.data.Card
+import com.diegolovera.cardindex.data.models.Card
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 
@@ -37,9 +37,18 @@ class CardFormDialog(context: Context, private val listener: CardFormListener) :
         mEditHolderName = findViewById(R.id.dialog_card_edit_holder_name)
         mEditBrand = findViewById(R.id.dialog_card_edit_brand)
 
+        mEditEntity.editText?.setText("Test entity")
+        mEditType.editText?.setText("Test type")
+        mEditNumber.editText?.setText("1234567894561254")
+        mEditValidUntil.editText?.setText("Test 01/20")
+        mEditCode.editText?.setText("123")
+        mEditHolderName.editText?.setText("Test Holder")
+        mEditBrand.editText?.setText("Test Brand")
+
         mButtonOk.setOnClickListener {
             listener.onCardCreated(
                 Card(
+                    0,
                     mEditEntity.editText?.text.toString(),
                     mEditType.editText?.text.toString(),
                     mEditNumber.editText?.text.toString(),
