@@ -1,4 +1,4 @@
-package com.diegolovera.cardindex
+package com.diegolovera.cardindex.ui.activites
 
 import android.os.Bundle
 import android.view.ViewGroup
@@ -7,6 +7,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.diegolovera.cardindex.*
+import com.diegolovera.cardindex.data.Card
+import com.diegolovera.cardindex.ui.adapters.CardListAdapter
+import com.diegolovera.cardindex.ui.dialogs.CardFormDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +26,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mRecyclerCards = findViewById(R.id.content_main_recycler_cards)
-        mAdapterCards = CardListAdapter(this, ArrayList())
+        mAdapterCards =
+            CardListAdapter(
+                this,
+                ArrayList()
+            )
 
         mRecyclerCards.setHasFixedSize(true)
         mRecyclerCards.layoutManager = LinearLayoutManager(this)
@@ -35,11 +43,13 @@ class MainActivity : AppCompatActivity() {
 
         mFabMain = findViewById(R.id.main_fab)
         mFabMain.setOnClickListener {
-            val cardDialog = CardFormDialog(this@MainActivity, object : CardFormListener {
-                override fun onCardCreated(cardCrated: Card) {
-                    mMainViewModel.addCard(cardCrated)
-                }
-            })
+            val cardDialog = CardFormDialog(
+                this@MainActivity,
+                object : CardFormDialog.CardFormListener {
+                    override fun onCardCreated(cardCrated: Card) {
+                        mMainViewModel.addCard(cardCrated)
+                    }
+                })
             cardDialog.show()
             cardDialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             cardDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)

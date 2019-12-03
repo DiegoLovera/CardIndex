@@ -1,4 +1,4 @@
-package com.diegolovera.cardindex
+package com.diegolovera.cardindex.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
+import com.diegolovera.cardindex.R
+import com.diegolovera.cardindex.data.Card
 import com.diegolovera.swipelayout.SwipeLayout
 
 class CardListAdapter(private val context: Context, private var mCharacterList: ArrayList<Card>?)

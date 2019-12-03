@@ -1,9 +1,11 @@
-package com.diegolovera.cardindex
+package com.diegolovera.cardindex.ui.dialogs
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.Window
+import com.diegolovera.cardindex.R
+import com.diegolovera.cardindex.data.Card
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 
@@ -37,17 +39,24 @@ class CardFormDialog(context: Context, private val listener: CardFormListener) :
 
         mButtonOk.setOnClickListener {
             listener.onCardCreated(
-                Card(mEditEntity.editText?.text.toString(),
+                Card(
+                    mEditEntity.editText?.text.toString(),
                     mEditType.editText?.text.toString(),
                     mEditNumber.editText?.text.toString(),
                     mEditValidUntil.editText?.text.toString(),
                     mEditCode.editText?.text.toString(),
                     mEditHolderName.editText?.text.toString(),
-                    mEditBrand.editText?.text.toString()))
+                    mEditBrand.editText?.text.toString()
+                )
+            )
             dismiss()
         }
         mButtonCancel.setOnClickListener {
             dismiss()
         }
+    }
+
+    interface CardFormListener {
+        fun onCardCreated(cardCrated: Card)
     }
 }

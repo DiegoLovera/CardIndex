@@ -1,4 +1,4 @@
-package com.diegolovera.cardindex
+package com.diegolovera.cardindex.data
 
 data class Card(
     val cardEntity: String,
