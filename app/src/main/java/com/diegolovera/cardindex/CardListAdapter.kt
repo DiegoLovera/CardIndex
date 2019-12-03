@@ -69,9 +69,9 @@ class CardListAdapter(private val context: Context, private var mCharacterList: 
         var mTextHolderName: TextView = itemView.findViewById(R.id.item_card_text_holder_name)
         var mTextBrand: TextView = itemView.findViewById(R.id.item_card_text_brand)
 
-        var mButtonLock: AppCompatImageButton = itemView.findViewById(R.id.item_card_lock_button)
-        var mButtonEdit: AppCompatImageButton = itemView.findViewById(R.id.item_card_edit_button)
-        var mButtonDelete: AppCompatImageButton = itemView.findViewById(R.id.item_card_delete_button)
+        var mButtonLock: AppCompatImageButton = itemView.findViewById(R.id.item_card_button_lock)
+        var mButtonEdit: AppCompatImageButton = itemView.findViewById(R.id.item_card_button_edit)
+        var mButtonDelete: AppCompatImageButton = itemView.findViewById(R.id.item_card_button_delete)
 
         init {
             mButtonLock.setOnClickListener {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
     android:layout_height="match_parent"
     app:cardCornerRadius="10dp">
@@ -13,40 +14,44 @@
         android:weightSum="1">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/item_card_lock_button"
-            android:layout_width="0dp"
+            android:id="@+id/item_card_button_lock"
+            android:layout_width="100dp"
             android:layout_height="0dp"
             android:background="@color/colorPrimary"
             android:src="@drawable/ic_lock"
-            app:layout_constraintBottom_toTopOf="@+id/item_card_edit_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toTopOf="@+id/item_card_button_edit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/item_card_edit_button"
-            android:layout_width="0dp"
+            android:id="@+id/item_card_button_edit"
+            android:layout_width="100dp"
             android:layout_height="0dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorAccentLight"
             android:src="@drawable/ic_edit"
-            app:layout_constraintBottom_toTopOf="@+id/item_card_delete_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toTopOf="@+id/item_card_button_share"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_card_lock_button" />
+            app:layout_constraintTop_toBottomOf="@+id/item_card_button_lock" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/item_card_delete_button"
-            android:layout_width="0dp"
+            android:id="@+id/item_card_button_share"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toTopOf="@+id/item_card_button_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_card_button_edit" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/item_card_button_delete"
+            android:layout_width="100dp"
             android:layout_height="0dp"
             android:background="@color/design_default_color_error"
             android:src="@drawable/ic_delete"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_card_edit_button" />
+            app:layout_constraintTop_toBottomOf="@+id/item_card_button_share" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
