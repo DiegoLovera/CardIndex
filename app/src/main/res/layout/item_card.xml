@@ -23,15 +23,27 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/item_card_text_entity"
+                android:id="@+id/item_card_text_tag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:textSize="30sp"
+                android:textColor="@color/colorTitle"
+                android:textSize="28sp"
                 app:layout_constraintEnd_toStartOf="@+id/item_card_text_type"
                 app:layout_constraintStart_toStartOf="@+id/item_card_text_number_1"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:text="Santander" />
+
+            <TextView
+                android:id="@+id/item_card_text_entity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/item_card_text_type"
+                app:layout_constraintStart_toStartOf="@+id/item_card_text_number_1"
+                app:layout_constraintTop_toBottomOf="@+id/item_card_text_tag"
                 tools:text="Santander" />
 
             <TextView

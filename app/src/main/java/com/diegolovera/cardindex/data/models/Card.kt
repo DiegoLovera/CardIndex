@@ -9,6 +9,9 @@ data class Card(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
 
+    @ColumnInfo(name = "cardTag")
+    val cardTag: String,
+
     @ColumnInfo(name = "cardEntity")
     val cardEntity: String,
 
@@ -28,4 +31,7 @@ data class Card(
     val cardHolderName: String,
 
     @ColumnInfo(name = "cardBrand")
-    val cardBrand: String)
+    val cardBrand: String,
+
+    @ColumnInfo(name = "cardLocked")
+    var cardLocked: Boolean = true)

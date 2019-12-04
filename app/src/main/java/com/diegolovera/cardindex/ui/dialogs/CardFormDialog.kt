@@ -4,15 +4,24 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.Window
+import android.widget.TextView
 import com.diegolovera.cardindex.R
 import com.diegolovera.cardindex.data.models.Card
+import com.diegolovera.cardindex.decrypt
+import com.diegolovera.cardindex.encrypt
+import com.diegolovera.cardindex.security.PasswordManager
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 
-class CardFormDialog(context: Context, private val listener: CardFormListener) : Dialog(context) {
+class CardFormDialog(context: Context,
+                     private val listener: CardFormListener,
+                     private val card: Card? = null) : Dialog(context) {
     private lateinit var mButtonOk: MaterialButton
     private lateinit var mButtonCancel: MaterialButton
 
+    private lateinit var mTextHeader: TextView
+
+    private lateinit var mEditTag: TextInputLayout
     private lateinit var mEditEntity: TextInputLayout
     private lateinit var mEditType: TextInputLayout
     private lateinit var mEditNumber: TextInputLayout
@@ -29,6 +38,9 @@ class CardFormDialog(context: Context, private val listener: CardFormListener) :
         mButtonOk = findViewById(R.id.dialog_card_button_ok)
         mButtonCancel = findViewById(R.id.dialog_card_button_cancel)
 
+        mTextHeader = findViewById(R.id.dialog_card_text_header)
+
+        mEditTag = findViewById(R.id.dialog_card_edit_tag)
         mEditEntity = findViewById(R.id.dialog_card_edit_entity)
         mEditType = findViewById(R.id.dialog_card_edit_type)
         mEditNumber = findViewById(R.id.dialog_card_edit_number)
@@ -37,29 +49,47 @@ class CardFormDialog(context: Context, private val listener: CardFormListener) :
         mEditHolderName = findViewById(R.id.dialog_card_edit_holder_name)
         mEditBrand = findViewById(R.id.dialog_card_edit_brand)
 
-        mEditEntity.editText?.setText("Test entity")
-        mEditType.editText?.setText("Test type")
-        mEditNumber.editText?.setText("1234567894561254")
-        mEditValidUntil.editText?.setText("Test 01/20")
-        mEditCode.editText?.setText("123")
-        mEditHolderName.editText?.setText("Test Holder")
-        mEditBrand.editText?.setText("Test Brand")
+        if (card == null) {
+            mTextHeader.text = "Add a new card"
+            mEditTag.editText?.setText("Test Card Tag")
+            mEditEntity.editText?.setText("Test entity")
+            mEditType.editText?.setText("Test type")
+            mEditNumber.editText?.setText("1111222233334444")
+            mEditValidUntil.editText?.setText("01/20")
+            mEditCode.editText?.setText("123")
+            mEditHolderName.editText?.setText("Test Holder")
+            mEditBrand.editText?.setText("Test Brand")
+        } else {
+            mTextHeader.text = "Edit your card"
+            mEditTag.editText?.setText(card.cardTag)
+            mEditEntity.editText?.setText(card.cardEntity)
+            mEditType.editText?.setText(card.cardType)
+            mEditNumber.editText?.setText(card.cardNumber.decrypt(PasswordManager.userPassword))
+            mEditValidUntil.editText?.setText(card.cardValidUntil)
+            mEditCode.editText?.setText(card.cardCode)
+            mEditHolderName.editText?.setText(card.cardHolderName)
+            mEditBrand.editText?.setText(card.cardBrand)
+        }
 
         mButtonOk.setOnClickListener {
+            val cardId = card?.id ?: 0L
             listener.onCardCreated(
                 Card(
-                    0,
+                    cardId,
+                    mEditTag.editText?.text.toString(),
                     mEditEntity.editText?.text.toString(),
                     mEditType.editText?.text.toString(),
-                    mEditNumber.editText?.text.toString(),
+                    mEditNumber.editText?.text.toString().encrypt(PasswordManager.userPassword),
                     mEditValidUntil.editText?.text.toString(),
                     mEditCode.editText?.text.toString(),
                     mEditHolderName.editText?.text.toString(),
-                    mEditBrand.editText?.text.toString()
+                    mEditBrand.editText?.text.toString(),
+                    cardLocked = true
                 )
             )
             dismiss()
         }
+
         mButtonCancel.setOnClickListener {
             dismiss()
         }
