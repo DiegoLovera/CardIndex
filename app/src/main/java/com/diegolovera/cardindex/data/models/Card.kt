@@ -34,4 +34,7 @@ data class Card(
     val cardBrand: String,
 
     @ColumnInfo(name = "cardLocked")
-    var cardLocked: Boolean = true)
+    var cardLocked: Boolean = true,
+
+    @ColumnInfo(name = "cardColor")
+    var cardColor: Int = 0)

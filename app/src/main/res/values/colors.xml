@@ -7,6 +7,12 @@
     <color name="colorAccent">#e53935</color>
     <color name="colorAccentDark">#ab000d</color>
 
+    <color name="cardColorOption1">#FF5C8D</color>
+    <color name="cardColorOption2">#9162e4</color>
+    <color name="cardColorOption3">#4ebaaa</color>
+    <color name="cardColorOption4">#76d275</color>
+    <color name="cardColorOption5">#ff844c</color>
+
     <color name="colorTitle">#000000</color>
 
     <color name="background">#F6F6F6</color>

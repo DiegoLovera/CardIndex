@@ -18,6 +18,7 @@ import com.diegolovera.cardindex.ui.activites.MainViewModel
 import com.diegolovera.cardindex.ui.dialogs.CardFormDialog
 import com.diegolovera.cardindex.ui.dialogs.PasswordDialog
 import com.diegolovera.swipelayout.SwipeLayout
+import com.google.android.material.card.MaterialCardView
 import javax.crypto.BadPaddingException
 
 class CardListAdapter(private val context: Context,
@@ -35,6 +36,8 @@ class CardListAdapter(private val context: Context,
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val card = mCharacterList!![position]
         holder.setIsRecyclable(false)
+
+        holder.mCardBackground.setBackgroundColor(card.cardColor)
         holder.mTextTag.text = card.cardTag
         holder.mTextEntity.text = card.cardEntity
         holder.mTextType.text = card.cardType
@@ -65,6 +68,7 @@ class CardListAdapter(private val context: Context,
     }
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var mCardBackground: MaterialCardView = itemView.findViewById(R.id.item_card_background)
         var mSwipeLayout: SwipeLayout = itemView.findViewById(R.id.item_card_swipelayout)
 
         var mTextTag: TextView = itemView.findViewById(R.id.item_card_text_tag)

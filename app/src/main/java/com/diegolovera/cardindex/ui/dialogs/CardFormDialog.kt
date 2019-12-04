@@ -11,6 +11,8 @@ import com.diegolovera.cardindex.decrypt
 import com.diegolovera.cardindex.encrypt
 import com.diegolovera.cardindex.security.PasswordManager
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputLayout
 
 class CardFormDialog(context: Context,
@@ -29,6 +31,8 @@ class CardFormDialog(context: Context,
     private lateinit var mEditCode: TextInputLayout
     private lateinit var mEditHolderName: TextInputLayout
     private lateinit var mEditBrand: TextInputLayout
+
+    private lateinit var mChipGroupColor: ChipGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,9 @@ class CardFormDialog(context: Context,
         mEditHolderName = findViewById(R.id.dialog_card_edit_holder_name)
         mEditBrand = findViewById(R.id.dialog_card_edit_brand)
 
+        mChipGroupColor = findViewById(R.id.dialog_card_chip_colors)
+
+
         if (card != null) {
             mTextHeader.text = context.getText(R.string.dialog_card_label_header_edit)
             mEditTag.editText?.setText(card.cardTag)
@@ -64,6 +71,28 @@ class CardFormDialog(context: Context,
         mButtonOk.setOnClickListener {
             val cardId = card?.id ?: 0L
             if (validateForm()) {
+
+                val colorInt = when (mChipGroupColor.checkedChipId) {
+                    R.id.dialog_card_chip_color_1 -> {
+                        R.color.cardColorOption1
+                    }
+                    R.id.dialog_card_chip_color_2 -> {
+                        R.color.cardColorOption2
+                    }
+                    R.id.dialog_card_chip_color_3 -> {
+                        R.color.cardColorOption3
+                    }
+                    R.id.dialog_card_chip_color_4 -> {
+                        R.color.cardColorOption4
+                    }
+                    R.id.dialog_card_chip_color_5 -> {
+                        R.color.cardColorOption5
+                    }
+                    else -> {
+                        R.color.design_default_color_background
+                    }
+                }
+
                 listener.onCardCreated(
                     Card(
                         cardId,
@@ -75,7 +104,8 @@ class CardFormDialog(context: Context,
                         mEditCode.editText?.text.toString().encrypt(PasswordManager.userPassword),
                         mEditHolderName.editText?.text.toString(),
                         mEditBrand.editText?.text.toString(),
-                        cardLocked = true
+                        cardLocked = true,
+                        cardColor = colorInt
                     )
                 )
                 dismiss()
