@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">CardIndex</string>
+    <string name="dialog_card_label_header_create">Add a new card</string>
+    <string name="dialog_card_label_header_edit">Edit your card</string>
+    <string name="dialog_card_hint_custom_tag">Custom tag</string>
+    <string name="dialog_card_hint_bank_or_entity">Bank or entity</string>
+    <string name="dialog_card_hint_card_type">Card type</string>
+    <string name="dialog_card_hint_card_number">Card number</string>
+    <string name="dialog_card_hint_valid_until">Valid until</string>
+    <string name="dialog_card_hint_code">Code</string>
+    <string name="dialog_card_hint_holder_name">Holder name</string>
+    <string name="dialog_card_hint_card_brand">Card brand</string>
+    <string name="button_cancel">@android:string/cancel</string>
+    <string name="button_ok">@android:string/ok</string>
+    <string name="dialog_password_header">Set a password</string>
+    <string name="dialog_password_hint_password">Password</string>
+    <string name="dialog_password_helper_password">The password must be at least 6 letters long</string>
+    <string name="alert_dialog_delete_card">Are you sure you want to delete this card?</string>
+    <string name="button_no">No</string>
+    <string name="button_yes">Yes</string>
+    <string name="error_password_doesnt_match">The actual password does\'nt match with the one that was used to save this card.</string>
+    <string name="error_short_password">The password is too short</string>
+    <string name="error_empty_password">Empty password</string>
+    <string name="alert_dialog_security_header">Protect your device</string>
+    <string name="alert_dialog_security_body">Set up a lock configuration before continuing</string>
+    <string name="alert_dialog_security_ok">OPEN SETTINGS</string>
+    <string name="alert_dialog_security_cancel">EXIT</string>
 </resources>

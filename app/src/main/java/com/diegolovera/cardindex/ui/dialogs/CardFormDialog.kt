@@ -49,18 +49,8 @@ class CardFormDialog(context: Context,
         mEditHolderName = findViewById(R.id.dialog_card_edit_holder_name)
         mEditBrand = findViewById(R.id.dialog_card_edit_brand)
 
-        if (card == null) {
-            mTextHeader.text = "Add a new card"
-            mEditTag.editText?.setText("Test Card Tag")
-            mEditEntity.editText?.setText("Test entity")
-            mEditType.editText?.setText("Test type")
-            mEditNumber.editText?.setText("1111222233334444")
-            mEditValidUntil.editText?.setText("01/20")
-            mEditCode.editText?.setText("123")
-            mEditHolderName.editText?.setText("Test Holder")
-            mEditBrand.editText?.setText("Test Brand")
-        } else {
-            mTextHeader.text = "Edit your card"
+        if (card != null) {
+            mTextHeader.text = context.getText(R.string.dialog_card_label_header_edit)
             mEditTag.editText?.setText(card.cardTag)
             mEditEntity.editText?.setText(card.cardEntity)
             mEditType.editText?.setText(card.cardType)

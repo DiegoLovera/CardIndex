@@ -9,12 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
-import com.diegolovera.cardindex.security.PasswordManager
 import com.diegolovera.cardindex.R
 import com.diegolovera.cardindex.data.models.Card
 import com.diegolovera.cardindex.decrypt
 import com.diegolovera.cardindex.encrypt
-import com.diegolovera.cardindex.security.EncryptionUtility
+import com.diegolovera.cardindex.security.PasswordManager
 import com.diegolovera.cardindex.ui.activites.MainViewModel
 import com.diegolovera.cardindex.ui.dialogs.CardFormDialog
 import com.diegolovera.cardindex.ui.dialogs.PasswordDialog
@@ -121,12 +120,13 @@ class CardListAdapter(private val context: Context,
             }
             mButtonDelete.setOnClickListener {
                 val builder = AlertDialog.Builder(context)
-                builder.setMessage("Are you sure you want to delete this card?")
+                builder.setMessage(context.getString(R.string.alert_dialog_delete_card))
                     .setCancelable(false)
-                    .setPositiveButton("Yes") { _, _ ->
+                    .setPositiveButton(context.getString(R.string.button_yes)) { _, _ ->
                         removeAt(adapterPosition)
                     }
-                    .setNegativeButton("No") { dialog, _ -> dialog.cancel() }
+                    .setNegativeButton(context.getString(R.string.button_no)) { dialog, _ ->
+                        dialog.cancel() }
                 val alert = builder.create()
                 alert.show()
             }
@@ -153,7 +153,7 @@ class CardListAdapter(private val context: Context,
             } catch (ex: BadPaddingException) {
                 mSwipeLayout.close(true)
                 Toast.makeText(context,
-                    "The actual password does'nt match with the one that was used to save this card.",
+                    context.getString(R.string.error_password_doesnt_match),
                     Toast.LENGTH_LONG).show()
             }
         }
@@ -178,7 +178,7 @@ class CardListAdapter(private val context: Context,
             } catch (ex: BadPaddingException) {
                 mSwipeLayout.close(true)
                 Toast.makeText(context,
-                    "The actual password does'nt match with the one that was used to save this card.",
+                    context.getString(R.string.error_password_doesnt_match),
                     Toast.LENGTH_LONG).show()
             }
         }

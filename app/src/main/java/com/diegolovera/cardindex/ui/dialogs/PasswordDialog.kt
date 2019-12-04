@@ -27,17 +27,17 @@ class PasswordDialog(context: Context,
         mButtonOk.setOnClickListener {
             if (mEditPassword.editText?.text != null) {
                 val password: String = mEditPassword.editText?.text.toString()
-                if (password.isNotEmpty() && password.length > 2) {
+                if (password.isNotEmpty() && password.length > 5) {
                     listener?.onPasswordSet(password)
                     mEditPassword.isErrorEnabled = false
                     dismiss()
                 } else {
                     mEditPassword.isErrorEnabled = true
-                    mEditPassword.error = "The password is too short"
+                    mEditPassword.error = context.getString(R.string.error_short_password)
                 }
             } else {
                 mEditPassword.isErrorEnabled = true
-                mEditPassword.error = "Empty password"
+                mEditPassword.error = context.getString(R.string.error_empty_password)
             }
         }
 

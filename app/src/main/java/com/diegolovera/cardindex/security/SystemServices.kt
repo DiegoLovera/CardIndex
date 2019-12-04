@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AlertDialog
 import com.diegolovera.cardindex.BuildConfig
+import com.diegolovera.cardindex.R
 import com.diegolovera.cardindex.openLockScreenSettings
 import kotlin.system.exitProcess
 
@@ -34,10 +35,10 @@ class SystemServices(private val context: Context) {
 
     fun showDeviceSecurityAlert(): AlertDialog {
         return AlertDialog.Builder(context)
-            .setTitle("Protect your device")
-            .setMessage("Set up a lock configuration before continuing")
-            .setPositiveButton("OPEN SETTINGS") { _, _ -> context.openLockScreenSettings() }
-            .setNegativeButton("EXIT") { _, _ -> exitProcess(0) }
+            .setTitle(context.getString(R.string.alert_dialog_security_header))
+            .setMessage(context.getString(R.string.alert_dialog_security_body))
+            .setPositiveButton(context.getString(R.string.alert_dialog_security_ok)) { _, _ -> context.openLockScreenSettings() }
+            .setNegativeButton(context.getString(R.string.alert_dialog_security_cancel)) { _, _ -> exitProcess(0) }
             .setCancelable(BuildConfig.DEBUG)
             .show()
     }
