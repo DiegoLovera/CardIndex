@@ -63,26 +63,52 @@ class CardFormDialog(context: Context,
 
         mButtonOk.setOnClickListener {
             val cardId = card?.id ?: 0L
-            listener.onCardCreated(
-                Card(
-                    cardId,
-                    mEditTag.editText?.text.toString(),
-                    mEditEntity.editText?.text.toString(),
-                    mEditType.editText?.text.toString(),
-                    mEditNumber.editText?.text.toString().encrypt(PasswordManager.userPassword),
-                    mEditValidUntil.editText?.text.toString().encrypt(PasswordManager.userPassword),
-                    mEditCode.editText?.text.toString().encrypt(PasswordManager.userPassword),
-                    mEditHolderName.editText?.text.toString(),
-                    mEditBrand.editText?.text.toString(),
-                    cardLocked = true
+            if (validateForm()) {
+                listener.onCardCreated(
+                    Card(
+                        cardId,
+                        mEditTag.editText?.text.toString(),
+                        mEditEntity.editText?.text.toString(),
+                        mEditType.editText?.text.toString(),
+                        mEditNumber.editText?.text.toString().encrypt(PasswordManager.userPassword),
+                        mEditValidUntil.editText?.text.toString().encrypt(PasswordManager.userPassword),
+                        mEditCode.editText?.text.toString().encrypt(PasswordManager.userPassword),
+                        mEditHolderName.editText?.text.toString(),
+                        mEditBrand.editText?.text.toString(),
+                        cardLocked = true
+                    )
                 )
-            )
-            dismiss()
+                dismiss()
+            }
         }
 
         mButtonCancel.setOnClickListener {
             dismiss()
         }
+    }
+
+    private fun validateForm(): Boolean {
+        if (mEditNumber.editText?.text.toString().length != 16) {
+            mEditNumber.error = context.getString(R.string.error_invalid_card_number_length)
+            return false
+        }
+        if (mEditValidUntil.editText?.text.toString().isEmpty()
+            || mEditValidUntil.editText?.text.toString().length > 5) {
+            mEditValidUntil.error = context.getString(R.string.error_invalid_date_length)
+            return false
+        } else {
+            if (!mEditValidUntil.editText?.text.toString()
+                    .matches(Regex("[0-9][0-9]+/[0-9][0-9]"))) {
+                mEditValidUntil.error = context.getString(R.string.error_invalid_date_format)
+                return false
+            }
+        }
+        if (mEditCode.editText?.text.toString().isEmpty()
+            || mEditCode.editText?.text.toString().length > 4) {
+            mEditCode.error = context.getString(R.string.error_invalid_security_code_length)
+            return false
+        }
+        return true
     }
 
     interface CardFormListener {

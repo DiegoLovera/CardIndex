@@ -25,4 +25,8 @@
     <string name="alert_dialog_security_body">Set up a lock configuration before continuing</string>
     <string name="alert_dialog_security_ok">OPEN SETTINGS</string>
     <string name="alert_dialog_security_cancel">EXIT</string>
+    <string name="error_invalid_card_number_length">Invalid card number length</string>
+    <string name="error_invalid_date_length">Invalid date length</string>
+    <string name="error_invalid_date_format">Invalid date format</string>
+    <string name="error_invalid_security_code_length">Invalid card security code length</string>
 </resources>
