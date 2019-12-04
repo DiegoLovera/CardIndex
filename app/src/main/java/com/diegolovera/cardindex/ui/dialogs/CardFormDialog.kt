@@ -55,8 +55,8 @@ class CardFormDialog(context: Context,
             mEditEntity.editText?.setText(card.cardEntity)
             mEditType.editText?.setText(card.cardType)
             mEditNumber.editText?.setText(card.cardNumber.decrypt(PasswordManager.userPassword))
-            mEditValidUntil.editText?.setText(card.cardValidUntil)
-            mEditCode.editText?.setText(card.cardCode)
+            mEditValidUntil.editText?.setText(card.cardValidUntil.decrypt(PasswordManager.userPassword))
+            mEditCode.editText?.setText(card.cardCode.decrypt(PasswordManager.userPassword))
             mEditHolderName.editText?.setText(card.cardHolderName)
             mEditBrand.editText?.setText(card.cardBrand)
         }
@@ -70,8 +70,8 @@ class CardFormDialog(context: Context,
                     mEditEntity.editText?.text.toString(),
                     mEditType.editText?.text.toString(),
                     mEditNumber.editText?.text.toString().encrypt(PasswordManager.userPassword),
-                    mEditValidUntil.editText?.text.toString(),
-                    mEditCode.editText?.text.toString(),
+                    mEditValidUntil.editText?.text.toString().encrypt(PasswordManager.userPassword),
+                    mEditCode.editText?.text.toString().encrypt(PasswordManager.userPassword),
                     mEditHolderName.editText?.text.toString(),
                     mEditBrand.editText?.text.toString(),
                     cardLocked = true

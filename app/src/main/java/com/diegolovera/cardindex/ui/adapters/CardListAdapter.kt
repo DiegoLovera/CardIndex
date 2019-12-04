@@ -135,19 +135,28 @@ class CardListAdapter(private val context: Context,
         private fun encryptDecryptData() {
             try {
                 val card = mCharacterList!![adapterPosition]
-                val data: String
+                val cardNumber: String
+                val cardValidUntil: String
+                val cardCode: String
                 if (card.cardLocked) {
-                    data = card.cardNumber.decrypt(PasswordManager.userPassword)
+                    cardNumber = card.cardNumber.decrypt(PasswordManager.userPassword)
+                    cardValidUntil = card.cardValidUntil.decrypt(PasswordManager.userPassword)
+                    cardCode = card.cardCode.decrypt(PasswordManager.userPassword)
                     card.cardLocked = false
                 } else {
-                    data = card.cardNumber.encrypt(PasswordManager.userPassword)
+                    cardNumber = card.cardNumber.encrypt(PasswordManager.userPassword)
+                    cardValidUntil = card.cardValidUntil.encrypt(PasswordManager.userPassword)
+                    cardCode = card.cardCode.encrypt(PasswordManager.userPassword)
                     card.cardLocked = true
                 }
 
-                mTextNumber1.text = data.substring(0, 4)
-                mTextNumber2.text = data.substring(4, 8)
-                mTextNumber3.text = data.substring(8, 12)
-                mTextNumber4.text = data.substring(12, 16)
+                mTextNumber1.text = cardNumber.substring(0, 4)
+                mTextNumber2.text = cardNumber.substring(4, 8)
+                mTextNumber3.text = cardNumber.substring(8, 12)
+                mTextNumber4.text = cardNumber.substring(12, 16)
+
+                mTextCvv.text = cardCode
+                mTextValidUntil.text = cardValidUntil
 
                 mSwipeLayout.close(true)
             } catch (ex: BadPaddingException) {

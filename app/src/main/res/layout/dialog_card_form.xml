@@ -206,6 +206,7 @@
                 android:layout_marginEnd="16dp"
                 android:hint="@string/dialog_card_hint_card_brand"
                 android:minWidth="150dp"
+                android:imeOptions="actionDone"
                 app:layout_constraintBottom_toBottomOf="@+id/dialog_card_edit_holder_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/dialog_card_edit_holder_name"
@@ -215,6 +216,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
+                    android:imeOptions="actionDone"
                     tools:text="Mastercard" />
 
             </com.google.android.material.textfield.TextInputLayout>
