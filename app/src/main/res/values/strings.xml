@@ -29,4 +29,5 @@
     <string name="error_invalid_date_length">Invalid date length</string>
     <string name="error_invalid_date_format">Invalid date format</string>
     <string name="error_invalid_security_code_length">Invalid card security code length</string>
+    <string name="dialog_card_text_choose_a_color">Choose a color</string>
 </resources>

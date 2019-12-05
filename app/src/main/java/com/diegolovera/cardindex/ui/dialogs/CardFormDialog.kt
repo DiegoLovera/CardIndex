@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Window
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 import com.diegolovera.cardindex.R
 import com.diegolovera.cardindex.data.models.Card
 import com.diegolovera.cardindex.decrypt
@@ -33,6 +34,11 @@ class CardFormDialog(context: Context,
     private lateinit var mEditBrand: TextInputLayout
 
     private lateinit var mChipGroupColor: ChipGroup
+    private lateinit var mChipColor1: Chip
+    private lateinit var mChipColor2: Chip
+    private lateinit var mChipColor3: Chip
+    private lateinit var mChipColor4: Chip
+    private lateinit var mChipColor5: Chip
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +60,16 @@ class CardFormDialog(context: Context,
         mEditBrand = findViewById(R.id.dialog_card_edit_brand)
 
         mChipGroupColor = findViewById(R.id.dialog_card_chip_colors)
+        mChipColor1 = findViewById(R.id.dialog_card_chip_color_1)
+        mChipColor1.chipBackgroundColor = getColorStateList(context, R.color.cardColorOption1)
+        mChipColor2 = findViewById(R.id.dialog_card_chip_color_2)
+        mChipColor2.chipBackgroundColor = getColorStateList(context, R.color.cardColorOption2)
+        mChipColor3 = findViewById(R.id.dialog_card_chip_color_3)
+        mChipColor3.chipBackgroundColor = getColorStateList(context, R.color.cardColorOption3)
+        mChipColor4 = findViewById(R.id.dialog_card_chip_color_4)
+        mChipColor4.chipBackgroundColor = getColorStateList(context, R.color.cardColorOption4)
+        mChipColor5 = findViewById(R.id.dialog_card_chip_color_5)
+        mChipColor5.chipBackgroundColor = getColorStateList(context, R.color.cardColorOption5)
 
 
         if (card != null) {
@@ -66,12 +82,33 @@ class CardFormDialog(context: Context,
             mEditCode.editText?.setText(card.cardCode.decrypt(PasswordManager.userPassword))
             mEditHolderName.editText?.setText(card.cardHolderName)
             mEditBrand.editText?.setText(card.cardBrand)
+            val checkedId = when (card.cardColor) {
+                R.color.cardColorOption1 -> {
+                    R.id.dialog_card_chip_color_1
+                }
+                R.color.cardColorOption2 -> {
+                    R.id.dialog_card_chip_color_2
+                }
+                R.color.cardColorOption3 -> {
+                    R.id.dialog_card_chip_color_3
+                }
+                R.color.cardColorOption4 -> {
+                    R.id.dialog_card_chip_color_4
+                }
+                R.color.cardColorOption5 -> {
+
+                    R.id.dialog_card_chip_color_5
+                }
+                else -> {
+                    R.id.dialog_card_chip_color_1
+                }
+            }
+            mChipGroupColor.check(checkedId)
         }
 
         mButtonOk.setOnClickListener {
             val cardId = card?.id ?: 0L
             if (validateForm()) {
-
                 val colorInt = when (mChipGroupColor.checkedChipId) {
                     R.id.dialog_card_chip_color_1 -> {
                         R.color.cardColorOption1

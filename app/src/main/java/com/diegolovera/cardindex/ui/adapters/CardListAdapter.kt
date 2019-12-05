@@ -1,6 +1,7 @@
 package com.diegolovera.cardindex.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import com.diegolovera.swipelayout.SwipeLayout
 import com.google.android.material.card.MaterialCardView
 import javax.crypto.BadPaddingException
 
+
 class CardListAdapter(private val context: Context,
                       private var mCharacterList: List<Card>?,
                       private val mMainViewModel: MainViewModel)
@@ -37,7 +39,7 @@ class CardListAdapter(private val context: Context,
         val card = mCharacterList!![position]
         holder.setIsRecyclable(false)
 
-        holder.mCardBackground.setBackgroundColor(card.cardColor)
+        holder.mCardBackground.background.setTint(context.getColor(card.cardColor))
         holder.mTextTag.text = card.cardTag
         holder.mTextEntity.text = card.cardEntity
         holder.mTextType.text = card.cardType
@@ -88,6 +90,7 @@ class CardListAdapter(private val context: Context,
         var mButtonLock: AppCompatImageButton = itemView.findViewById(R.id.item_card_button_lock)
         var mButtonEdit: AppCompatImageButton = itemView.findViewById(R.id.item_card_button_edit)
         var mButtonDelete: AppCompatImageButton = itemView.findViewById(R.id.item_card_button_delete)
+        var mButtonShare: AppCompatImageButton = itemView.findViewById(R.id.item_card_button_share)
 
         init {
             mButtonLock.setOnClickListener {
@@ -133,6 +136,9 @@ class CardListAdapter(private val context: Context,
                         dialog.cancel() }
                 val alert = builder.create()
                 alert.show()
+            }
+            mButtonShare.setOnClickListener {
+                shareData()
             }
         }
 
@@ -188,6 +194,29 @@ class CardListAdapter(private val context: Context,
                 cardDialog.show()
                 cardDialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 cardDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            } catch (ex: BadPaddingException) {
+                mSwipeLayout.close(true)
+                Toast.makeText(context,
+                    context.getString(R.string.error_password_doesnt_match),
+                    Toast.LENGTH_LONG).show()
+            }
+        }
+
+        private fun shareData() {
+            try {
+                val cardNumber: String = mCharacterList!![adapterPosition].cardNumber.decrypt(PasswordManager.userPassword)
+                val cardValidUntil: String = mCharacterList!![adapterPosition].cardValidUntil.decrypt(PasswordManager.userPassword)
+                val cardCode: String = mCharacterList!![adapterPosition].cardCode.decrypt(PasswordManager.userPassword)
+                var textToShare = "Card Number: $cardNumber\n"
+                textToShare += "Valid until: $cardValidUntil\n"
+                textToShare += "Security code: $cardCode"
+
+                val sendIntent = Intent()
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.putExtra(Intent.EXTRA_TEXT, textToShare)
+                sendIntent.type = "text/plain"
+                context.startActivity(Intent.createChooser(sendIntent, "Share"))
+                mSwipeLayout.close(true)
             } catch (ex: BadPaddingException) {
                 mSwipeLayout.close(true)
                 Toast.makeText(context,

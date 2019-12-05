@@ -234,60 +234,68 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="Choose a color"
+                android:text="@string/dialog_card_text_choose_a_color"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/dialog_card_chip_colors"
+                app:layout_constraintBottom_toTopOf="@+id/dialog_card_chip_colors_scroll"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dialog_card_edit_holder_name" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/dialog_card_chip_colors"
+            <HorizontalScrollView
+                android:id="@+id/dialog_card_chip_colors_scroll"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:scrollbars="none"
                 app:layout_constraintBottom_toTopOf="@+id/dialog_card_button_cancel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:singleLine="true"
-                app:singleSelection="true">
+                app:layout_constraintStart_toStartOf="parent">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/dialog_card_chip_color_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checkable="true"
-                    android:text="Pink" />
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/dialog_card_chip_colors"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:singleLine="true"
+                    app:singleSelection="true">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/dialog_card_chip_color_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checkable="true"
-                    android:text="Purple" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/dialog_card_chip_color_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Pink" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/dialog_card_chip_color_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checkable="true"
-                    android:text="Cyan" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/dialog_card_chip_color_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Purple" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/dialog_card_chip_color_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checkable="true"
-                    android:text="Green" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/dialog_card_chip_color_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Cyan" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/dialog_card_chip_color_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checkable="true"
-                    android:text="Orange" />
-        </com.google.android.material.chip.ChipGroup>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/dialog_card_chip_color_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Green" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/dialog_card_chip_color_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Orange" />
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/dialog_card_button_cancel"
