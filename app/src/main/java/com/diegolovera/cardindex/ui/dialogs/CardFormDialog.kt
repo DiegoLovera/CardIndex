@@ -3,6 +3,7 @@ package com.diegolovera.cardindex.ui.dialogs
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources.getColorStateList
@@ -100,7 +101,7 @@ class CardFormDialog(context: Context,
                     R.id.dialog_card_chip_color_5
                 }
                 else -> {
-                    R.id.dialog_card_chip_color_1
+                    View.NO_ID
                 }
             }
             mChipGroupColor.check(checkedId)
@@ -126,7 +127,7 @@ class CardFormDialog(context: Context,
                         R.color.cardColorOption5
                     }
                     else -> {
-                        R.color.design_default_color_background
+                        0
                     }
                 }
 

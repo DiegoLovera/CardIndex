@@ -39,7 +39,9 @@ class CardListAdapter(private val context: Context,
         val card = mCharacterList!![position]
         holder.setIsRecyclable(false)
 
-        holder.mCardBackground.background.setTint(context.getColor(card.cardColor))
+        if (card.cardColor != 0) {
+            holder.mCardBackground.background.setTint(context.getColor(card.cardColor))
+        }
         holder.mTextTag.text = card.cardTag
         holder.mTextEntity.text = card.cardEntity
         holder.mTextType.text = card.cardType
